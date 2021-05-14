@@ -1,9 +1,12 @@
 package platforms.ios.pages;
 
-import factory.pages.ShopPage;
+import factory.pages.AbstractShopPage;
+import io.appium.java_client.AppiumDriver;
 
-public class IOSShopPage implements ShopPage {
+public class IOSShopPage extends AbstractShopPage {
 
-    // here will be elements and methods with operations on them
+    public IOSShopPage(AppiumDriver driver) {
+        super(driver);
+    }
 
 }

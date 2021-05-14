@@ -1,9 +1,11 @@
 package platforms.android.pages;
 
-import factory.pages.ShopPage;
+import factory.pages.AbstractShopPage;
+import io.appium.java_client.AppiumDriver;
 
-public class AndroidShopPage implements ShopPage {
+public class AndroidShopPage extends AbstractShopPage {
 
-    // here will be elements and methods with operations on them
-
+    public AndroidShopPage(AppiumDriver driver) {
+        super(driver);
+    }
 }

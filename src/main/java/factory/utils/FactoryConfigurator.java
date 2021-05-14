@@ -10,7 +10,7 @@ import platforms.ios.IOSFactory;
 
 public class FactoryConfigurator {
 
-    public PlatformFactory getFactory(DesiredCapabilities capabilities) throws Exception {
+    public static PlatformFactory getFactory(DesiredCapabilities capabilities) throws Exception {
 
         PlatformFactory factory = null;
 

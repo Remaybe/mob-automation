@@ -1,9 +1,11 @@
 package platforms.ios.pages;
 
-import factory.pages.BagPage;
+import factory.pages.AbstractBagPage;
+import io.appium.java_client.AppiumDriver;
 
-public class IOSBagPage implements BagPage {
+public class IOSBagPage extends AbstractBagPage {
 
-    // here will be elements and methods with operations on them
-
+    public IOSBagPage(AppiumDriver driver) {
+        super(driver);
+    }
 }
