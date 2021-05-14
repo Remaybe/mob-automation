@@ -13,4 +13,21 @@ public abstract class AbstractShopPage extends ShopElements {
         categoriesSection.click();
         return this;
     }
+
+    public AbstractShopPage clickMenSection(){
+        menSection.click();
+        return this;
+    }
+
+    public AbstractShopPage selectTopsSection(){
+        clothesTops.click();
+        return this;
+    }
+
+    public AbstractShopPage selectAllTopsCategory(){
+        clothesAllTops.click();
+        return this;
+    }
+
+    public abstract AbstractShopPage viewAllTops();
 }

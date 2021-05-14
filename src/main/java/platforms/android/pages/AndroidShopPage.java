@@ -8,4 +8,12 @@ public class AndroidShopPage extends AbstractShopPage {
     public AndroidShopPage(AppiumDriver driver) {
         super(driver);
     }
+
+    @Override
+    public AbstractShopPage viewAllTops() {
+        clickMenSection();
+        selectTopsSection();
+        selectAllTopsCategory();
+        return this;
+    }
 }
