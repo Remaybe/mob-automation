@@ -8,17 +8,27 @@ import factory.PlatformFactory;
 import platforms.android.AndroidFactory;
 import platforms.ios.IOSFactory;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class FactoryConfigurator {
 
-    public static PlatformFactory getFactory(DesiredCapabilities capabilities) throws Exception {
+    public static PlatformFactory getFactory(DesiredCapabilities capabilities) {
 
         PlatformFactory factory = null;
+        URL property = null;
+
+        try {
+            property = new URL("http://0.0.0.0:4723/wd/hub");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         switch (capabilities.getPlatformName()) {
             case ANDROID:
-                factory = new AndroidFactory(new AndroidDriver(HttpClient.Factory.create("uri"), capabilities));
+                factory = new AndroidFactory(new AndroidDriver(property, capabilities));
             case IOS:
-                factory = new IOSFactory(new IOSDriver(HttpClient.Factory.create("uri"), capabilities));
+                factory = new IOSFactory(new IOSDriver(property, capabilities));
         }
 
         return factory;
