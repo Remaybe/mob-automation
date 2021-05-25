@@ -8,4 +8,9 @@ public class IOSBagPage extends AbstractBagPage {
     public IOSBagPage(AppiumDriver driver) {
         super(driver);
     }
+
+    @Override
+    public String getGoodTitle() {
+        return goodName.getAttribute("label").toLowerCase();
+    }
 }

@@ -8,4 +8,9 @@ public class AndroidBagPage extends AbstractBagPage {
     public AndroidBagPage(AppiumDriver driver) {
         super(driver);
     }
+
+    @Override
+    public String getGoodTitle() {
+        return goodName.getText().toLowerCase();
+    }
 }

@@ -10,10 +10,21 @@ public class AndroidShopPage extends AbstractShopPage {
     }
 
     @Override
-    public AbstractShopPage viewAllTops() {
-        clickMenSection();
-        selectTopsSection();
-        selectAllTopsCategory();
+    public AbstractShopPage validLogin() {
+        validLoginWrapper();
         return this;
     }
+
+    @Override
+    public AbstractShopPage selectAllTopsSubcategory() {
+        clickTopsSection();
+        clickAllTopsButton();
+        return this;
+    }
+
+    @Override
+    public String getGoodsLabel() {
+        return goodLabel.getText().toLowerCase();
+    }
+
 }

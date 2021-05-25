@@ -13,7 +13,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <testng.version>7.4.0</testng.version>
         <allure.version>2.13.10</allure.version>
-        <selenium.version>4.0.0-beta-3</selenium.version>
+        <selenium.version>3.141.59</selenium.version>
         <appium.version>7.5.1</appium.version>
         <log4j.version>2.5</log4j.version>
         <assertj.version>LATEST</assertj.version>
@@ -27,6 +27,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -49,11 +54,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>${appium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
