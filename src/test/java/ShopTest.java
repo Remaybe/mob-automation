@@ -25,6 +25,9 @@ public class ShopTest extends BaseTest {
                         .getGoodTitle();
 
         bagPage.verifyGoodsName(expectedGoodName, actualGoodName, softAssertions)
+//                .edit()
+//                .addToFav()
+//                .selectFavCategory()
                 .verifyAll(softAssertions);
     }
 }

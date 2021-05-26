@@ -16,8 +16,8 @@ public class BagElements extends BasePage {
     @AndroidFindBy(id = "com.ae.ae.debug:id/empty_bag_shop_button")
     protected MobileElement shopNowButton;
 
-    @AndroidFindBy (id = "com.ae.ae.debug:id/row_title") // text
-    @iOSXCUITFindBy (accessibility = "ProductTableViewCellProductNameLabelID") // label
+    @AndroidFindBy (id = "com.ae.ae.debug:id/row_title")
+    @iOSXCUITFindBy (accessibility = "ProductTableViewCellProductNameLabelID")
     protected MobileElement goodName;
 
     @AndroidFindBy (id = "com.ae.ae.debug:id/edit")
@@ -25,6 +25,13 @@ public class BagElements extends BasePage {
     protected MobileElement editButton;
 
     @AndroidFindBy (id = "com.ae.ae.debug:id/remove_button")
-    @iOSXCUITFindBy (accessibility = "Delete")
+    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther")
     protected MobileElement removeGoodButton;
+
+    @AndroidFindBy (id = "com.ae.ae.debug:id/move_to_favorites")
+    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeButton[`label == \"MOVE TO FAVORITES\"`]")
+    protected MobileElement moveToFavButton;
+
+    @iOSXCUITFindBy (accessibility = "tabBar.button.favorites")
+    protected MobileElement favButton;
 }
