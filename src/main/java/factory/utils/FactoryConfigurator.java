@@ -1,26 +1,46 @@
 package factory.utils;
 
+import factory.PlatformFactory;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.http.HttpClient;
-import factory.PlatformFactory;
 import platforms.android.AndroidFactory;
 import platforms.ios.IOSFactory;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
 public class FactoryConfigurator {
 
-    public PlatformFactory getFactory(DesiredCapabilities capabilities) throws Exception {
+    private static AppiumDriver driver;
+    public static PlatformFactory factory;
 
-        PlatformFactory factory = null;
+    public static PlatformFactory getFactory(DesiredCapabilities capabilities) throws MalformedURLException {
 
-        switch (capabilities.getPlatformName()) {
+        URL url = new URL("http://0.0.0.0:4723/wd/hub");
+
+        switch (capabilities.getPlatform()){
             case ANDROID:
-                factory = new AndroidFactory(new AndroidDriver(HttpClient.Factory.create("uri"), capabilities));
+                driver = new AndroidDriver(url, capabilities);
+                factory = new AndroidFactory(driver);
+                break;
             case IOS:
-                factory = new IOSFactory(new IOSDriver(HttpClient.Factory.create("uri"), capabilities));
+                driver = new IOSDriver(url, capabilities);
+                factory = new IOSFactory(driver);
+                break;
         }
 
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        return factory;
+    }
+
+    public static AppiumDriver getCurrentDriver(){
+        return driver;
+    }
+
+    public static PlatformFactory getCurrentFactory() {
         return factory;
     }
 }
