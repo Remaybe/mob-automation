@@ -1,9 +1,8 @@
-import factory.utils.SwipeDirection;
 import org.testng.annotations.Test;
 
 public class ShopTest extends BaseTest {
 
-    @Test
+    @Test(description = "summary of test")
     public void sampleTest(){
         String expectedGoodName =
                 shopPage.allowLimAccess()
@@ -11,7 +10,6 @@ public class ShopTest extends BaseTest {
                         .selectAeoMenu()
                         .validLogin()
                         .clickOnCategories()
-                        .swipeToMenCategory(SwipeDirection.UP)
                         .selectMenCategory()
                         .selectAllTopsSubcategory()
                         .verifyClothesCategory("T-SHIRTS", softAssertions)
@@ -25,9 +23,6 @@ public class ShopTest extends BaseTest {
                         .getGoodTitle();
 
         bagPage.verifyGoodsName(expectedGoodName, actualGoodName, softAssertions)
-//                .edit()
-//                .addToFav()
-//                .selectFavCategory()
                 .verifyAll(softAssertions);
     }
 }

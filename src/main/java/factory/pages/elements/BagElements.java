@@ -12,8 +12,8 @@ public class BagElements extends BasePage {
         super(driver);
     }
 
-    @iOSXCUITFindBy(accessibility = "SHOP NOW")
     @AndroidFindBy(id = "com.ae.ae.debug:id/empty_bag_shop_button")
+    @iOSXCUITFindBy(accessibility = "SHOP NOW")
     protected MobileElement shopNowButton;
 
     @AndroidFindBy (id = "com.ae.ae.debug:id/row_title")
@@ -21,17 +21,14 @@ public class BagElements extends BasePage {
     protected MobileElement goodName;
 
     @AndroidFindBy (id = "com.ae.ae.debug:id/edit")
-    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeButton[`label == \"Edit\"`]")
+    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeButton[`label == 'Edit'`]")
     protected MobileElement editButton;
 
     @AndroidFindBy (id = "com.ae.ae.debug:id/remove_button")
-    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther")
+    @iOSXCUITFindBy (accessibility = "Delete")
     protected MobileElement removeGoodButton;
 
     @AndroidFindBy (id = "com.ae.ae.debug:id/move_to_favorites")
-    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeButton[`label == \"MOVE TO FAVORITES\"`]")
+    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeButton[`label == 'MOVE TO FAVORITES'`]")
     protected MobileElement moveToFavButton;
-
-    @iOSXCUITFindBy (accessibility = "tabBar.button.favorites")
-    protected MobileElement favButton;
 }

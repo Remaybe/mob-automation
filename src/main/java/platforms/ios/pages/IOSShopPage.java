@@ -1,18 +1,23 @@
 package platforms.ios.pages;
 
+import factory.pages.AbstractBagPage;
 import factory.pages.AbstractShopPage;
-import factory.utils.WaitUtils;
+import factory.utils.Constants;
+import factory.utils.SwipeDirection;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.NoSuchElementException;
 
+@Slf4j
 public class IOSShopPage extends AbstractShopPage {
 
     public IOSShopPage(AppiumDriver driver) {
         super(driver);
     }
 
-    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[4]")
+    @iOSXCUITFindBy (accessibility = "categories.titleLabel.id.American Eagle")
     private MobileElement eagleSubcategory;
 
     @iOSXCUITFindBy (accessibility = "tabBar.button.shop")
@@ -25,10 +30,27 @@ public class IOSShopPage extends AbstractShopPage {
     @Override
     public AbstractShopPage validLogin() {
         try {
-            validLoginWrapper();
-        } catch (Exception exception) {}
+            super.validLogin();
+        } catch (Exception exception) {
+            log.info("User already logged");
+        }
         shopSectButtonClick();
         return this;
+    }
+
+    @Override
+    public boolean presenceOfElement(MobileElement element) {
+        try {
+            return element.isEnabled();
+        } catch (NoSuchElementException exception){
+            return false;
+        }
+    }
+
+    @Override
+    public AbstractBagPage moveToBagPage() {
+        swipePreset(SwipeDirection.DOWN, Constants.SWIPE_DISTANCE);
+        return super.moveToBagPage();
     }
 
     @Override
@@ -39,15 +61,7 @@ public class IOSShopPage extends AbstractShopPage {
         return this;
     }
 
-    @Override
-    public String getGoodsLabel() {
-        WaitUtils.waitForVisibilityElement(goodLabel);
-        return goodLabel.getAttribute("label").toLowerCase();
-    }
-
     private void selectEagleSubcategory(){
-        try {
-            eagleSubcategory.click();
-        } catch (Exception exception) {}
+        swipeToElement(eagleSubcategory).click();
     }
 }

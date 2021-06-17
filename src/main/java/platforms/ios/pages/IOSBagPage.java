@@ -11,19 +11,14 @@ public class IOSBagPage extends AbstractBagPage {
         super(driver);
     }
 
-    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeButton[`label == \"REMOVE\"`][1]")
+    @iOSXCUITFindBy (iOSClassChain = "**/XCUIElementTypeButton[`label == 'REMOVE'`][1]")
     protected MobileElement deleteGoodButton;
-
-    @Override
-    public String getGoodTitle() {
-        return goodName.getAttribute("label").toLowerCase();
-    }
 
     @Override
     public AbstractBagPage removeGood() {
         clickRemoveButton();
         deleteGood();
-        return null;
+        return this;
     }
 
     private void deleteGood(){

@@ -1,13 +1,16 @@
 package factory.pages;
 
 import factory.pages.elements.ShopElements;
+import factory.utils.Constants;
 import factory.utils.FactoryConfigurator;
 import factory.utils.SwipeDirection;
 import factory.utils.WaitUtils;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import io.qameta.allure.Step;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Dimension;
 
@@ -19,27 +22,19 @@ public abstract class AbstractShopPage extends ShopElements {
         super(driver);
     }
 
-    public AbstractShopPage swipeToMenCategory(SwipeDirection direction) {
-        WaitUtils.waitForVisibilityElement(orientedCategory);
-        swipePreset(direction, SWIPE_DISTANCE_MEN_CATEGORY);
-        return this;
-    }
-
-    private void swipePreset(SwipeDirection direction, int swipeDistance) {
+    protected void swipePreset(SwipeDirection direction, int swipeDistance) {
         Dimension dimension = driver.manage().window().getSize();
         PointOption pointOptionStart = PointOption.point(dimension.width / 2, dimension.height / 2);
         new TouchAction(driver)
                 .press(pointOptionStart)
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(BasePage.PRESS_TIME)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(Constants.PRESS_TIME)))
                 .moveTo(direction.getEndPoint(dimension, swipeDistance))
                 .release().perform();
     }
 
+    @Step("name of step")
     public AbstractShopPage allowLimAccess(){
-        try {
-            limAccessButton.click();
-        } catch (Exception exception){
-        }
+        tapIfDisplayed(limAccessButton);
         return this;
     }
 
@@ -54,12 +49,12 @@ public abstract class AbstractShopPage extends ShopElements {
     }
 
     public AbstractShopPage typeEmail(){
-        emailField.sendKeys(EMAIL);
+        emailField.sendKeys(Constants.EMAIL);
         return this;
     }
 
     public AbstractShopPage typePassword(){
-        passField.sendKeys(PASSWORD);
+        passField.sendKeys(Constants.PASSWORD);
         return this;
     }
 
@@ -68,9 +63,7 @@ public abstract class AbstractShopPage extends ShopElements {
         return this;
     }
 
-    public abstract AbstractShopPage validLogin();
-
-    protected AbstractShopPage validLoginWrapper(){
+    public AbstractShopPage validLogin(){
         clickSign();
         typeEmail();
         typePassword();
@@ -78,43 +71,47 @@ public abstract class AbstractShopPage extends ShopElements {
         return this;
     }
 
-    public AbstractShopPage clickShopNowEagle(){
-        try {
-            shopNowButtonEagle.click();
-        } catch (Exception exception) {
+    public abstract boolean presenceOfElement(MobileElement element);
+
+    private void swipeToElementWrapper(MobileElement element) {
+        for (int i = 0; i < Constants.SWIPE_LIM; i++) {
+            swipePreset(SwipeDirection.UP, Constants.SWIPE_DISTANCE);
+            if (presenceOfElement(element)) break;
         }
+    }
+
+    public MobileElement swipeToElement(MobileElement element){
+        swipeToElementWrapper(element);
+        return element;
+    }
+
+    protected void tapIfDisplayed(MobileElement element){
+        if (presenceOfElement(element)) element.click();
+    }
+
+    public AbstractShopPage clickShopNowEagle(){
+        tapIfDisplayed(shopNowButtonEagle);
         return this;
     }
 
     public AbstractShopPage clickOnCategories(){
-        WaitUtils.waitForVisibilityElement(categoriesSection);
-        categoriesSection.click();
+        WaitUtils.waitForVisibilityElement(categoriesSection).click();
+        WaitUtils.waitForVisibilityElement(categoriesSection).click();
         return this;
     }
 
     public AbstractShopPage selectMenCategory(){
-        WaitUtils.waitForVisibilityElement(menCategoryButton);
-        menCategoryButton.click();
+        swipeToElement(menCategoryButton).click();
         return this;
     }
 
     public AbstractShopPage acceptServices(){
-        try {
-            WaitUtils.waitForVisibilityElement(acceptSevicesButton);
-            acceptSevicesButton.click();
-        } catch (Exception exception) {
-            return this;
-        }
+        tapIfDisplayed(acceptSevicesButton);
         return this;
     }
 
     public AbstractShopPage declineNotifications(){
-        try {
-            WaitUtils.waitForVisibilityElement(declineNotificationsButton);
-            declineNotificationsButton.click();
-        } catch (Exception exception) {
-            return this;
-        }
+        tapIfDisplayed(declineNotificationsButton);
         return this;
     }
 
@@ -124,8 +121,7 @@ public abstract class AbstractShopPage extends ShopElements {
     }
 
     public AbstractShopPage clickAllTopsButton(){
-        WaitUtils.waitForVisibilityElement(viewAllTops);
-        viewAllTops.click();
+        WaitUtils.waitForVisibilityElement(viewAllTops).click();
         return this;
     }
 
@@ -143,27 +139,22 @@ public abstract class AbstractShopPage extends ShopElements {
         return this;
     }
 
-    public abstract String getGoodsLabel();
+    public String getGoodsLabel() {
+        return WaitUtils.waitForVisibilityElement(goodLabel).getText().toLowerCase();
+    }
 
     public AbstractShopPage addGoodToBag(){
-        swipePreset(SwipeDirection.UP, SWIPE_DISTANCE_MEN_CATEGORY);
-        addToBagButton.click();
+        swipeToElement(addToBagButton).click();
         return this;
     }
 
     public AbstractShopPage selectMediumSize(){
-        mediumSizeCheckbox.click();
+        if (!mediumSizeCheckbox.isSelected()) mediumSizeCheckbox.click();
         return this;
     }
 
     public AbstractBagPage moveToBagPage(){
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         bagSectionButton.click();
         return FactoryConfigurator.getCurrentFactory().getBagPage();
     }
-
 }

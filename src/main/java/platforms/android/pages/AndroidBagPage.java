@@ -10,11 +10,6 @@ public class AndroidBagPage extends AbstractBagPage {
     }
 
     @Override
-    public String getGoodTitle() {
-        return goodName.getText().toLowerCase();
-    }
-
-    @Override
     public AbstractBagPage removeGood() {
         clickRemoveButton();
         return this;

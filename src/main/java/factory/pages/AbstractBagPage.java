@@ -11,7 +11,9 @@ public abstract class AbstractBagPage extends BagElements {
         super(driver);
     }
 
-    public abstract String getGoodTitle();
+    public String getGoodTitle() {
+        return goodName.getText().toLowerCase();
+    }
 
     public AbstractBagPage edit(){
         editButton.click();
@@ -24,8 +26,7 @@ public abstract class AbstractBagPage extends BagElements {
     }
 
     public AbstractBagPage clickRemoveButton(){
-        WaitUtils.waitForVisibilityElement(removeGoodButton);
-        removeGoodButton.click();
+        WaitUtils.waitForVisibilityElement(removeGoodButton).click();
         return this;
     }
 
@@ -35,11 +36,6 @@ public abstract class AbstractBagPage extends BagElements {
         softAssertions.assertThat(actualLabel)
                 .as("Invalid good in bag")
                 .isEqualTo(expectedLabel);
-        return this;
-    }
-
-    public AbstractBagPage selectFavCategory(){
-        favButton.click();
         return this;
     }
 }

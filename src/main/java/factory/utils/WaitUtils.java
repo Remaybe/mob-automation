@@ -12,13 +12,14 @@ public class WaitUtils {
 
     private static FluentWait getWait() {
         return new FluentWait<>(FactoryConfigurator.getCurrentDriver())
-                .withTimeout(Duration.ofSeconds(20))
-                .pollingEvery(Duration.ofSeconds(5))
+                .withTimeout(Duration.ofSeconds(4))
+                .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
     }
 
-    public static void waitForVisibilityElement(MobileElement element) {
+    public static MobileElement waitForVisibilityElement(MobileElement element) {
         getWait().until(ExpectedConditions.visibilityOf(element));
+        return element;
     }
 }

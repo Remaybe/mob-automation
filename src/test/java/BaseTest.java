@@ -9,17 +9,30 @@ import org.testng.annotations.BeforeTest;
 
 import java.net.MalformedURLException;
 
+import static factory.utils.Constants.TEST_PLATFORM;
+
 public class BaseTest {
 
-    protected AbstractBagPage bagPage;
-    protected AbstractShopPage shopPage;
+    protected static AbstractBagPage bagPage;
+    protected static AbstractShopPage shopPage;
     protected static PlatformFactory factory;
-    protected SoftAssertions softAssertions = new SoftAssertions();
+    protected static SoftAssertions softAssertions = new SoftAssertions();
+    protected static CapabilitiesType capabilitiesType;
 
     @BeforeTest
     public void setUp(){
+
+        switch (TEST_PLATFORM) {
+            case "Android":
+                capabilitiesType = CapabilitiesType.ANDROID;
+                break;
+            case "IOS":
+                capabilitiesType = CapabilitiesType.IOS;
+                break;
+        }
+
         try {
-            factory = FactoryConfigurator.getFactory(CapabilitiesType.ANDROID.getCapabilities());
+            factory = FactoryConfigurator.getFactory(capabilitiesType.getCapabilities());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
