@@ -21,7 +21,7 @@
         <qameta.allure.plugin.version>2.10.0</qameta.allure.plugin.version>
         <allure-maven-plugin-report.version>2.13.6</allure-maven-plugin-report.version>
         <aspectj.version>1.9.1</aspectj.version>
-        <testng.xml>src/test/suites/case_studies_page.xml</testng.xml>
+        <testng.xml>src/test/suites/shop_test.xml</testng.xml>
         <surefire.version>3.0.0-M5</surefire.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
