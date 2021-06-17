@@ -1,3 +1,5 @@
+package com.ae.inter;
+
 import org.testng.annotations.Test;
 
 public class ShopTest extends BaseTest {

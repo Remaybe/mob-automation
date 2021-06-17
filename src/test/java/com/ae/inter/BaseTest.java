@@ -1,3 +1,5 @@
+package com.ae.inter;
+
 import factory.PlatformFactory;
 import factory.pages.AbstractBagPage;
 import factory.pages.AbstractShopPage;

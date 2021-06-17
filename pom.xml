@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <testng.version>7.4.0</testng.version>
         <allure.version>2.13.10</allure.version>
         <selenium.version>3.141.59</selenium.version>
@@ -86,9 +86,9 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <useIncrementalCompilation>false</useIncrementalCompilation>
-                    <compilerVersion>${java.version}</compilerVersion>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <compilerVersion>1.8</compilerVersion>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -121,14 +121,6 @@
                 <version>${qameta.allure.plugin.version}</version>
                 <configuration>
                     <reportVersion>${allure-maven-plugin-report.version}</reportVersion>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <fork>true</fork>
-                    <executable>/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/bin/javac</executable>
                 </configuration>
             </plugin>
         </plugins>
