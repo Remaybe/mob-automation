@@ -144,6 +144,7 @@ public abstract class AbstractShopPage extends ShopElements {
 
     @Step("Verifies is users selected correct category")
     public AbstractShopPage verifyClothesCategory(String categoryName, SoftAssertions softAssertions){
+        attachScreen("Clothes category is correct");
         softAssertions.assertThat(clothesSectionHeader.getText().toLowerCase())
                 .as("Category has been chased in wrong way")
                 .isEqualTo(categoryName.toLowerCase());

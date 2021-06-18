@@ -24,9 +24,15 @@
         <testng.xml>src/test/suites/shop_test.xml</testng.xml>
         <surefire.version>3.0.0-M5</surefire.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <apache-commons.version>2.6</apache-commons.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${apache-commons.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
