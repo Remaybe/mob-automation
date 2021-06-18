@@ -7,6 +7,7 @@ import factory.utils.SwipeDirection;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -61,6 +62,7 @@ public class IOSShopPage extends AbstractShopPage {
         return this;
     }
 
+    @Step("Selects 'Eagle' subcategory")
     private void selectEagleSubcategory(){
         swipeToElement(eagleSubcategory).click();
     }

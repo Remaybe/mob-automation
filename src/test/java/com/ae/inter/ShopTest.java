@@ -4,8 +4,8 @@ import org.testng.annotations.Test;
 
 public class ShopTest extends BaseTest {
 
-    @Test(description = "summary of test")
-    public void sampleTest(){
+    @Test(description = "Checks user case due adding good into the bag and validates it")
+    public void addingGoodToBag(){
         String expectedGoodName =
                 shopPage.allowLimAccess()
                         .clickShopNowEagle()

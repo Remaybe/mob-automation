@@ -32,37 +32,43 @@ public abstract class AbstractShopPage extends ShopElements {
                 .release().perform();
     }
 
-    @Step("name of step")
+    @Step("Allows limited access if needed")
     public AbstractShopPage allowLimAccess(){
         tapIfDisplayed(limAccessButton);
         return this;
     }
 
+    @Step("Selects AEO menu")
     public AbstractShopPage selectAeoMenu(){
         slideMenuButton.click();
         return this;
     }
 
+    @Step("Clicks sign button")
     public AbstractShopPage clickSign(){
         signingCategory.click();
         return this;
     }
 
+    @Step("Types email in direction field")
     public AbstractShopPage typeEmail(){
         emailField.sendKeys(Constants.EMAIL);
         return this;
     }
 
+    @Step("Types password in direction field")
     public AbstractShopPage typePassword(){
         passField.sendKeys(Constants.PASSWORD);
         return this;
     }
 
+    @Step("Accepts sign from user")
     public AbstractShopPage clickSignIn(){
         signInButton.click();
         return this;
     }
 
+    @Step("Logins due correct email and password")
     public AbstractShopPage validLogin(){
         clickSign();
         typeEmail();
@@ -71,6 +77,7 @@ public abstract class AbstractShopPage extends ShopElements {
         return this;
     }
 
+    @Step("Checks is element present on page")
     public abstract boolean presenceOfElement(MobileElement element);
 
     private void swipeToElementWrapper(MobileElement element) {
@@ -80,26 +87,31 @@ public abstract class AbstractShopPage extends ShopElements {
         }
     }
 
+    @Step("Swipes to chosen element on page")
     public MobileElement swipeToElement(MobileElement element){
         swipeToElementWrapper(element);
         return element;
     }
 
+    @Step("Taps on chosen element if its displayed")
     protected void tapIfDisplayed(MobileElement element){
         if (presenceOfElement(element)) element.click();
     }
 
+    @Step("Clicks 'Shop Now' button on Eagle category")
     public AbstractShopPage clickShopNowEagle(){
         tapIfDisplayed(shopNowButtonEagle);
         return this;
     }
 
+    @Step("Clicks 'categories' section")
     public AbstractShopPage clickOnCategories(){
         WaitUtils.waitForVisibilityElement(categoriesSection).click();
         WaitUtils.waitForVisibilityElement(categoriesSection).click();
         return this;
     }
 
+    @Step("Selects 'men' category")
     public AbstractShopPage selectMenCategory(){
         swipeToElement(menCategoryButton).click();
         return this;
@@ -115,18 +127,22 @@ public abstract class AbstractShopPage extends ShopElements {
         return this;
     }
 
+    @Step("Clicks 'tops' section")
     public AbstractShopPage clickTopsSection(){
         topsSection.click();
         return this;
     }
 
+    @Step("Clicks 'all tops' section")
     public AbstractShopPage clickAllTopsButton(){
         WaitUtils.waitForVisibilityElement(viewAllTops).click();
         return this;
     }
 
+    @Step("Selects subcategory called 'all tops'")
     public abstract AbstractShopPage selectAllTopsSubcategory();
 
+    @Step("Verifies is users selected correct category")
     public AbstractShopPage verifyClothesCategory(String categoryName, SoftAssertions softAssertions){
         softAssertions.assertThat(clothesSectionHeader.getText().toLowerCase())
                 .as("Category has been chased in wrong way")
@@ -134,25 +150,30 @@ public abstract class AbstractShopPage extends ShopElements {
         return this;
     }
 
+    @Step("Selects first good from shop list")
     public AbstractShopPage selectFirstGood(){
         firstGoodFromList.click();
         return this;
     }
 
+    @Step("Gets label of chosen good")
     public String getGoodsLabel() {
         return WaitUtils.waitForVisibilityElement(goodLabel).getText().toLowerCase();
     }
 
+    @Step("Adds chosen good to bag")
     public AbstractShopPage addGoodToBag(){
         swipeToElement(addToBagButton).click();
         return this;
     }
 
+    @Step("Selects medium size for good")
     public AbstractShopPage selectMediumSize(){
         if (!mediumSizeCheckbox.isSelected()) mediumSizeCheckbox.click();
         return this;
     }
 
+    @Step("Moves to bag page")
     public AbstractBagPage moveToBagPage(){
         bagSectionButton.click();
         return FactoryConfigurator.getCurrentFactory().getBagPage();
