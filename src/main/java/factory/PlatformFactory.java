@@ -1,9 +1,9 @@
 package factory;
 
-import factory.pages.BagPage;
-import factory.pages.ShopPage;
+import factory.pages.AbstractBagPage;
+import factory.pages.AbstractShopPage;
 
 public interface PlatformFactory {
-    ShopPage getShopPage();
-    BagPage getBagPage();
+    AbstractShopPage getShopPage();
+    AbstractBagPage getBagPage();
 }

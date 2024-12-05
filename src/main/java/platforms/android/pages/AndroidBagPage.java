@@ -1,9 +1,17 @@
 package platforms.android.pages;
 
-import factory.pages.BagPage;
+import factory.pages.AbstractBagPage;
+import io.appium.java_client.AppiumDriver;
 
-public class AndroidBagPage implements BagPage {
+public class AndroidBagPage extends AbstractBagPage {
 
-    // here will be elements and methods with operations on them
+    public AndroidBagPage(AppiumDriver driver) {
+        super(driver);
+    }
 
+    @Override
+    public AbstractBagPage removeGood() {
+        clickRemoveButton();
+        return this;
+    }
 }

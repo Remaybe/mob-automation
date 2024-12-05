@@ -1,11 +1,11 @@
 package platforms.android;
 
+import factory.pages.AbstractBagPage;
+import factory.pages.AbstractShopPage;
 import io.appium.java_client.AppiumDriver;
 import factory.PlatformFactory;
 import platforms.android.pages.AndroidBagPage;
 import platforms.android.pages.AndroidShopPage;
-import factory.pages.BagPage;
-import factory.pages.ShopPage;
 
 public class AndroidFactory implements PlatformFactory {
 
@@ -16,12 +16,12 @@ public class AndroidFactory implements PlatformFactory {
     }
 
     @Override
-    public ShopPage getShopPage() {
-        return new AndroidShopPage();
+    public AbstractShopPage getShopPage() {
+        return new AndroidShopPage(driver);
     }
 
     @Override
-    public BagPage getBagPage() {
-        return new AndroidBagPage();
+    public AbstractBagPage getBagPage() {
+        return new AndroidBagPage(driver);
     }
 }

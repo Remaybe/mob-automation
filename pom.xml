@@ -13,7 +13,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <testng.version>7.4.0</testng.version>
         <allure.version>2.13.10</allure.version>
-        <selenium.version>4.0.0-beta-3</selenium.version>
+        <selenium.version>3.141.59</selenium.version>
         <appium.version>7.5.1</appium.version>
         <log4j.version>2.5</log4j.version>
         <assertj.version>LATEST</assertj.version>
@@ -21,12 +21,23 @@
         <qameta.allure.plugin.version>2.10.0</qameta.allure.plugin.version>
         <allure-maven-plugin-report.version>2.13.6</allure-maven-plugin-report.version>
         <aspectj.version>1.9.1</aspectj.version>
-        <testng.xml>src/test/suites/case_studies_page.xml</testng.xml>
+        <testng.xml>src/test/suites/shop_test.xml</testng.xml>
         <surefire.version>3.0.0-M5</surefire.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <apache-commons.version>2.6</apache-commons.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${apache-commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -49,11 +60,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>${appium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
@@ -86,9 +92,9 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <useIncrementalCompilation>false</useIncrementalCompilation>
-                    <compilerVersion>${java.version}</compilerVersion>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <compilerVersion>1.8</compilerVersion>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
